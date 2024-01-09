@@ -1,6 +1,9 @@
 [package]
+author = "AlexSherbinin"
 name = "hyper-futures"
 description = "Compatibility layer for futures to use AsyncRead and AsyncWrite traits with hyper"
+repository = "https://github.com/AlexSherbinin/hyper-futures"
+license = "MIT"
 version = "0.1.0"
 edition = "2021"
 
