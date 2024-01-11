@@ -34,7 +34,6 @@ impl<T: AsyncRead + AsyncWrite> hyper::rt::Read for AsyncReadWriteCompat<T> {
         mut buf: hyper::rt::ReadBufCursor<'_>,
     ) -> Poll<Result<(), std::io::Error>> {
         let buf_slice: &mut [u8] = unsafe { std::mem::transmute(buf.as_mut()) };
-        dbg!("Reading");
         match self.project().inner.poll_read(cx, buf_slice) {
             Poll::Ready(bytes_read) => {
                 let bytes_read = bytes_read?;
@@ -54,7 +53,6 @@ impl<T: AsyncRead + AsyncWrite> hyper::rt::Write for AsyncReadWriteCompat<T> {
         cx: &mut Context<'_>,
         buf: &[u8],
     ) -> Poll<Result<usize, std::io::Error>> {
-        dbg!("Writing");
         self.project().inner.poll_write(cx, buf)
     }
 
